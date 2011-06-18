@@ -1,5 +1,6 @@
 require 'rocco'
 require 'guard/guard'
+require 'fileutils'
 
 module Guard
   class Rocco < Guard
@@ -23,8 +24,9 @@ module Guard
 
     private
     def build(path, target = nil)
-      target ||= self.filename_to_target(path)
+      target ||= filename_to_target(path)
       puts "rocco: #{path} -> #{target}"
+      FileUtils.mkdir_p File.split(target).first
       File.open(target, 'wb') { |fh| fh.print ::Rocco.new(path, all_paths).to_html }
     end
 
@@ -32,7 +34,7 @@ module Guard
       Watcher.match_files(self, Dir['**/*'])
     end
 
-    def self.filename_to_target(path)
+    def filename_to_target(path)
       File.join(@options[:dir], path).gsub(%r{\.[^\.]+$}, '.html')
     end
   end

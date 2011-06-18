@@ -21,5 +21,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'guard', '>= 0.4.0'
   s.add_dependency 'rocco'
+  s.add_development_dependency 'rspec', '~> 2.6.0'
+  s.add_development_dependency 'mocha'
 end
 
