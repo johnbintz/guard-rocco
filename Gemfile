@@ -6,6 +6,7 @@ gemspec
 require 'rbconfig'
 gem 'guard'
 gem 'guard-rspec'
+gem 'rake'
 
 if RbConfig::CONFIG['host_os'] =~ /darwin/
   gem 'growl'

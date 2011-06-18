@@ -1,5 +1,6 @@
 require 'rocco'
 require 'guard/guard'
+require 'guard/watcher'
 require 'fileutils'
 
 module Guard
