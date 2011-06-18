@@ -9,5 +9,5 @@ Only one option for now:
 
 * `:dir` specifies the output dir (default `doc`)
 
-`gem install guard-rocco` or Bundle it up with `gem 'guard-rocco'`. Yeah!
+`gem install guard-rocco` or Bundle it up with `gem 'guard-rocco'`. Then `guard init rocco`. Yeah!
 
