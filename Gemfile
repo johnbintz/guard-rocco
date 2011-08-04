@@ -4,7 +4,6 @@ source "http://rubygems.org"
 gemspec
 
 require 'rbconfig'
-gem 'guard'
 gem 'guard-rspec'
 gem 'rake'
 
