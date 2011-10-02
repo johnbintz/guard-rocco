@@ -42,7 +42,9 @@ module Guard
     end
 
     def rocco_options
-      @options[:stylesheet] ? {stylesheet: @options[:stylesheet]} : {}
+      opts = @options.dup
+      opts.delete(:dir)
+      opts
     end
   end
 end
