@@ -28,7 +28,9 @@ module Guard
       target ||= filename_to_target(path)
       puts "rocco: #{path} -> #{target}"
       FileUtils.mkdir_p File.split(target).first
-      File.open(target, 'wb') { |fh| fh.print ::Rocco.new(path, all_paths).to_html }
+      File.open(target, 'wb') do |fh|
+        fh.print ::Rocco.new(path, all_paths, rocco_options).to_html
+      end
     end
 
     def all_paths
@@ -37,6 +39,10 @@ module Guard
 
     def filename_to_target(path)
       File.join(@options[:dir], path).gsub(%r{\.[^\.]+$}, '.html')
+    end
+
+    def rocco_options
+      @options[:stylesheet] ? {stylesheet: @options[:stylesheet]} : {}
     end
   end
 end
