@@ -1,4 +1,5 @@
 require 'rocco'
+require 'guard'
 require 'guard/guard'
 require 'guard/watcher'
 require 'fileutils'
