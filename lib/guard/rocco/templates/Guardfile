@@ -1,4 +1,4 @@
-guard 'rocco' do
+guard 'rocco', :run_all => [:start, :change], :dir => 'doc', :stylesheet => 'http://jashkenas.github.com/docco/resources/docco.css' do
   # For Rails 3.0.x and 3.1
   watch(%r{^app/.*\.(rb|coffee)$})
   watch(%r{^lib/.*\.rb$})
