@@ -2,7 +2,7 @@ It's a [Guard](http://github.com/guard/guard) for the [Rocco](http://github.com/
 
 ``` ruby
 # default values
-guard 'rocco', :run_all => [:start, :change], :dir => 'doc', :stylesheet => 'http://jashkenas.github.com/docco/resources/docco.css' do
+guard 'rocco', :run_on => [:start, :change], :dir => 'doc', :stylesheet => 'http://jashkenas.github.com/docco/resources/docco.css' do
   watch(%r{^app/.*\.(rb|coffee)$})
   watch(%r{^lib/.*\.rb$})
 end
