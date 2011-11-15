@@ -1,10 +1,10 @@
 # -*- encoding: utf-8 -*-
 $:.push File.expand_path("../lib", __FILE__)
-require "guard/rocco/version"
+require "guard-rocco"
 
 Gem::Specification.new do |s|
   s.name        = "guard-rocco"
-  s.version     = Guard::RoccoVersion::VERSION
+  s.version     = Guard::Rocco::VERSION
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["John Bintz"]
   s.email       = ["john@coswellproductions.com"]
