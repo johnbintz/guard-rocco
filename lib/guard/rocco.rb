@@ -9,19 +9,27 @@ module Guard
     def initialize(watchers = [], options = {})
       super
 
-      @options = { :dir => 'doc' }.merge(options)
+      @options = options || {}
+
+      @dir = @options[:dir] || 'doc'
+      @run_on = @options[:run_on] || [:start, :change]
+      @run_on = [@run_on] unless @run_on.respond_to?(:include?)
     end
 
     def start
-      UI.info "Guard::Rocco is waiting to build docs..."
+      all_paths.each { |path| build(path) } if run_for? :start
+    end
+
+    def reload
+      all_paths.each { |path| build(path) } if run_for? :reload
     end
 
     def run_all
-      all_paths.each { |path| build(path) }
+      all_paths.each { |path| build(path) } if run_for? :all
     end
 
     def run_on_change(paths = [])
-      paths.each { |path| build(path) }
+      paths.each { |path| build(path) } if run_for? :change
     end
 
     private
@@ -39,14 +47,18 @@ module Guard
     end
 
     def filename_to_target(path)
-      File.join(@options[:dir], path).gsub(%r{\.[^\.]+$}, '.html')
+      File.join(@dir, path).gsub(%r{\.[^\.]+$}, '.html')
     end
 
     def rocco_options
       opts = @options.dup
       opts.delete(:dir)
+      opts.delete(:run_on)
       opts
+    end
+
+    def run_for? command
+      @run_on.include?(command)
     end
   end
 end
-

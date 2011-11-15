@@ -36,5 +36,19 @@ describe Guard::Rocco do
       File.file?(File.join(doc_dir, 'lib/guard/rocco.html')).should be_true
     end
   end
+  
+  describe 'run options' do
+    it 'should allow array of symbols' do
+      guard = Guard::Rocco.new([], :run_on => [:start, :change])
+      guard.run_for?(:start).should be_true
+      guard.run_for?(:reload).should be_false
+    end
+
+    it 'should allow symbol' do
+      guard = Guard::RailsAssets.new([], :run_on => :start)
+      guard.run_for?(:start).should be_true
+      guard.run_for?(:reload).should be_false
+    end
+  end
 end
 
