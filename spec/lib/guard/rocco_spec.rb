@@ -14,10 +14,13 @@ describe Guard::Rocco do
     FileUtils.rm_rf doc_dir
   end
 
-  let(:guard) { Guard::Rocco.new([], :dir => doc_dir) }
+  let(:guard) { Guard::Rocco.new([], options) }
   let(:filename) { 'lib/guard/rocco.rb' }
+  let(:options) { { :dir => doc_dir } }
 
   describe '#run_all' do
+    let(:options) { { :dir => doc_dir, :run_on => [ :all ] } }
+
     before do
       guard.stubs(:all_paths).returns([filename])
     end
@@ -40,14 +43,14 @@ describe Guard::Rocco do
   describe 'run options' do
     it 'should allow array of symbols' do
       guard = Guard::Rocco.new([], :run_on => [:start, :change])
-      guard.run_for?(:start).should be_true
-      guard.run_for?(:reload).should be_false
+      guard.send(:run_for?, :start).should be_true
+      guard.send(:run_for?, :reload).should be_false
     end
 
     it 'should allow symbol' do
-      guard = Guard::RailsAssets.new([], :run_on => :start)
-      guard.run_for?(:start).should be_true
-      guard.run_for?(:reload).should be_false
+      guard = Guard::Rocco.new([], :run_on => :start)
+      guard.send(:run_for?, :start).should be_true
+      guard.send(:run_for?, :reload).should be_false
     end
   end
 end

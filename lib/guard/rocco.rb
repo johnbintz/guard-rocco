@@ -6,8 +6,6 @@ require 'fileutils'
 
 module Guard
   class Rocco < Guard
-    autoload :VERSION, 'guard/rocco/version'
-
     def initialize(watchers = [], options = {})
       super
 
